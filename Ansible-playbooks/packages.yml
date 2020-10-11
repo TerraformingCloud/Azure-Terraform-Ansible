@@ -1,0 +1,15 @@
+# Install required softwares using chocolatey
+
+---
+
+- hosts: windows
+  tasks:
+  - name: Install required softwares using Chocolatey
+    win_chocolatey:
+      name:
+      - chocolatey
+      - vscode
+      - git
+      - microsoftazurestorageexplorer
+      - microsoft-edge
+      state: present

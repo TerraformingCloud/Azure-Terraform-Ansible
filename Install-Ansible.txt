@@ -1,0 +1,21 @@
+# Download and Install Ansible on Windows Server with WSL
+
+Login to WSL by running <distro>.exe
+
+# Become Root user and install required packages
+
+$ sudo su -
+
+$ apt-get update
+
+$ apt-get install python3-pip
+
+$ pip3 install ansible
+
+$ pip3 install pywinrm
+
+$ pip3 install pywinrm[credssp]
+
+# Verify Ansible version and configuration paths
+
+$ ansible --version

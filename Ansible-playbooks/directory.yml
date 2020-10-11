@@ -1,0 +1,12 @@
+# Create a directory
+
+---
+
+- hosts: windows
+  vars:
+    filepath: "c:\\Users\\Temp"
+  tasks:
+    - name: Ensure the fileshare mount directory is created
+      win_file:
+         path: "{{ filepath }}"
+         state: directory

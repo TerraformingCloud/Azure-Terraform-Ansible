@@ -1,0 +1,26 @@
+
+Install Ansible on Windows Server 2019 - Domain Controller vm
+
+1. Install WSL 
+2. Download Ubuntu (or any other Linux distro) from MS store/website
+
+
+## Enable the Windows Subsystem for Linux
+
+$ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+
+## Download a Linux distribution 
+
+$ Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing
+
+## Extract and install a Linux distribution
+
+$ Rename-Item .\Ubuntu.appx .\Ubuntu.zip
+$ Expand-Archive .\Ubuntu.zip .\Ubuntu
+
+## Add your distro path to the Windows environment PATH (C:\Users\Administrator\Ubuntu in this example), using PowerShell
+
+$userenv = [System.Environment]::GetEnvironmentVariable("Path", "User")
+[System.Environment]::SetEnvironmentVariable("PATH", $userenv + ";C:\Users\Administrator\Ubuntu", "User")
+
+## You can now launch your distribution from any path by typing <distro>.exe. For example: ubuntu.exe.

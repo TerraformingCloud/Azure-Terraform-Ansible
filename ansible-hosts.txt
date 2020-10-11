@@ -1,0 +1,25 @@
+
+$ mkdir /etc/ansible
+
+$ sudo nano /etc/ansible/hosts
+
+# Copy the contents below
+
+[domain-controllers]
+dc-vm
+
+[domain-computers]
+win-vm
+win-vm2
+
+[windows]
+domain-controllers
+domain-computers
+
+[windows:vars]
+ansible_user="ansible@vamsi.local"
+ansible_password=Password@123!
+ansible_connection=winrm
+ansible_winrm_transport=credssp
+ansible_port=5986
+ansible_winrm_server_cert_validation=ignore

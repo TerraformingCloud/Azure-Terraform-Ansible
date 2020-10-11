@@ -1,0 +1,22 @@
+# Create domain users
+
+---
+
+- hosts: dc
+  tasks:
+  - name: Ensure user is present with address information
+    win_domain_user:
+      name: Rithvij Burugadda
+      firstname: Rithvij
+      surname: Burugadda
+      company: BTS
+      password: Rit#viJP@s$13
+      upn: rithvij@vamsi.local
+      email: rithvij@gmail.com
+      state: present
+      street: 123 4th St.
+      city: Hyd
+      state_province: IN
+      postal_code: 12345
+      country: IN
+      password_never_expires: yes

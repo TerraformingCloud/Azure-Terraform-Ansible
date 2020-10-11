@@ -1,0 +1,23 @@
+# Check Winrm Listeners and Services
+
+[user@hostname]$: winrm enumerate winrm/config/Listener -> Http and Https
+
+[user@hostname]$: winrm get winrm/config/Service -> To check CredSSP is enabled or not
+
+
+# Update Winrm settings for Ansible to work
+
+## Download the configuration file from ansible github repo
+
+[user@hostname]$: wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
+
+## Configure WinRM listeners and enable https and CredSSP
+[user@hostname]$: .\ConfigureRemotingForAnsible.ps1 -EnableCredSSP -DisableBasicAuth -Verbose
+
+## Force remove HTTP listener
+
+[user@hostname]$: Get-ChildItem -Path WSMan:\localhost\Listener | Where-Object { $_.Keys -eq "Transport=HTTP" } | Remove-Item -Recurse -Force
+
+## Restart Winrm Service
+
+[user@hostname]$: Restart-Service winrm
